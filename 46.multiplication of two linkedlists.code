@@ -1,0 +1,21 @@
+ long long mod = 1000000007;
+        
+        long long num1 = 0;
+        long long num2 = 0;
+        
+        // Convert first list to a number
+        Node* temp1 = first;
+        while (temp1) {
+            num1 = (num1 * 10 + (temp1->data - '0')) % mod;
+            temp1 = temp1->next;
+        }
+        
+        // Convert second list to a number
+        Node* temp2 = second;
+        while (temp2) {
+            num2 = (num2 * 10 + (temp2->data - '0')) % mod;
+            temp2 = temp2->next;
+        }
+        
+        // Multiply the two numbers and take modulo
+        return (num1 * num2) % mod;

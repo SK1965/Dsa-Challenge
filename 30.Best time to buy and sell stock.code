@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int i=0 ;
+        int buyamt=INT_MAX;
+        int amount=0;
+        while(i<prices.size()){
+            buyamt = min(prices[i],buyamt);
+            amount =max(amount , prices[i]-buyamt);
+            i++;
+        }
+        
+        return amount;
+    }
+};N
