@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int m = grid.size() , n = grid[0].size();
+        int count=0 , total=0 , time=0;
+        queue<pair<int,int>> indx; //i,j
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]!=0){
+                    total++;
+                if(grid[i][j]==2) indx.push({i,j});
+            }}
+        }
+         vector<int> dx = {0 ,0, 1 ,-1};
+         vector<int> dy = {1,-1 ,0,0};
+        while(!indx.empty()){
+            int k=indx.size();
+            count+=k;
+            while(k--){
+            int x = indx.front().first , y=indx.front().second;
+            indx.pop();
+            for(int i=0;i<4;i++){
+                int nx=x+dx[i]  ,ny=y+dy[i];
+                if(nx<0 ||ny<0 || nx>=m || ny>=n ||grid[nx][ny]!=1)continue;
+                else{
+                    grid[nx][ny]=2;
+                    indx.push({nx,ny});
+                }
+            }
+            
+            }
+            if(!indx.empty())time++;
+        }
+        return count==total ? time:-1;
+    }
+};

@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int evalRPN(std::vector<std::string>& tokens) {
+        std::stack<int> st;
+
+        for (std::string ch : tokens) {
+            if (isOperator(ch)) {  
+                int o1 = st.top(); 
+                st.pop();
+                int o2 = st.top(); 
+                st.pop();
+
+                
+                switch (ch[0]) {
+                    case '+':
+                        st.push(o2 + o1);
+                        break;
+                    case '-':
+                        st.push(o2 - o1);
+                        break;
+                    case '*':
+                        st.push(o2 * o1);
+                        break;
+                    case '/':
+                        st.push(o2 / o1);
+                        break;
+                }
+            } else {
+                
+                st.push(std::stoi(ch));
+            }
+        }
+        return st.top();
+    }
+
+private:
+    bool isOperator(const std::string& s) {
+        return s == "+" || s == "-" || s == "*" || s == "/";
+    }
+};
